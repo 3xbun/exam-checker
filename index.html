@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Checker</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Prompt', sans-serif;
+        }
+
+        .container {
+            width: 85vw;
+            margin: auto;
+            padding: 1em;
+            margin-top: 2em;
+            border-radius: 1em;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            width: 80%;
+            margin: 1em auto 0;
+            font-size: 2em;
+            padding: .5em 1em;
+            border-radius: 1em;
+            border: 1px solid black;
+            text-align: center;
+        }
+
+        .score {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="app">
+        <div class="container">
+            <h1>Exam Checker</h1>
+            <div class="form">
+                <input type="text" v-model="key" @change="cal()">
+                <input type="text" v-model="answer" @change="cal()">
+                <input class="score" type="text" v-model="score">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref } = Vue
+
+        createApp({
+            setup() {
+                const key = ref("enter your key")
+                const answer = ref("Enter student answer")
+                const score = ref(0)
+
+                const cal = () => {
+                    score.value = 0
+
+                    for (let ans = 0; ans < answer.value.length; ans++) {
+                        console.log(answer.value[ans])
+                        if (key.value[ans] == answer.value[ans]) {
+                            score.value += 1
+                        }
+                    }
+                }
+
+                return {
+                    key,
+                    answer,
+                    score,
+                    cal
+                }
+            }
+        }).mount('#app')
+    </script>
+
+</body>
+
+</html>
