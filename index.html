@@ -60,7 +60,7 @@
             <h1>Exam Checker</h1>
             <div class="form">
                 <input type="text" v-model="key" @change="cal()">
-                <input type="text" v-model="answer" @change="cal()">
+                <input type="text" v-model="answer" @click="answer=''" @change="cal()">
                 <input class="score" type="text" v-model="score">
             </div>
         </div>
